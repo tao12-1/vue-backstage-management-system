@@ -310,9 +310,9 @@ export default {
       if (res.meta.status !== 200) {
         return this.$message.error("获取参数列表失败！");
       }
-      console.log(res.data);
+      this.$message.success('获取参数成功！')
       res.data.forEach((item) => {
-        item.attr_vals ? item.attr_vals.split(" ") : [];
+         item.attr_vals = item.attr_vals ? item.attr_vals.split(' ') : []
         item.inputVisible = false;
         item.inputValue = "";
       });
@@ -418,7 +418,7 @@ export default {
       this.$message.success("删除参数成功！");
       this.getParamsData();
     },
-    async handleInputConfirm(row) {
+    handleInputConfirm(row) {
       if (row.inputValue.trim().length === 0) {
         row.inputValue = "";
         row.inputVisible = false;
@@ -439,9 +439,9 @@ export default {
         }
       );
       if (res.meta.status !== 200) {
-        return this.$message.error("修改参数失败");
+        return this.$message.error("修改参数项失败");
       }
-      this.$message.success("修改参数成功");
+      this.$message.success("修改参数项成功");
     },
     showInput(row) {
       row.inputVisible = true;
@@ -450,10 +450,10 @@ export default {
         this.$refs.saveTagInput.$refs.input.focus();
       });
     },
-    handleClose(i, row) {
-      row.attr_vals.splice(i, 1);
-      this.saveAttrVals(row);
-    },
+     handleClose(i,row) {
+      row.attr_vals.splice(i,1)
+      this.saveAttrVals(row)
+    }
   },
   computed: {
     // 如果按钮需要被禁用，则返回true，否则返回false
